@@ -1,46 +1,50 @@
-import Animated, {
-  useSharedValue,
-  withTiming,
-  useAnimatedStyle,
-  Easing,
-} from "react-native-reanimated";
-import { View, Button } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+// ANIMATIONS (LOTTIES)
+import { AnimationIntro_Lottie } from "./app/animations";
+// LAYOUTS
+// import { ScrollBottomSheet } from "./app/layouts";
+// ROUTES
+// import DrawerAppRoutes from "./app/routes/drawer/DrawerApp.Routes";
+import StacksAppRoutes from "./app/routes/StacksApp.Routes";
 
-export default function AnimatedStyleUpdateExample(props) {
-  const randomWidth = useSharedValue(10);
 
-  const config = {
-    duration: 500,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
+export default function App() {
+  // FOR EFFECT AUPLAY AND LOOP OF "FILE JSON Lottie"
+  const lottieRef = useRef(null);
 
-  const style = useAnimatedStyle(() => {
-    return {
-      width: withTiming(randomWidth.value, config),
+  // Automatic page change using setTimout
+  const [automaticPageChange, setAutomaticPageChange] = useState(false);
+  const delayPageChange = 5;
+
+  useEffect(() => {
+    // FOR EFFECT AUPLAY AND LOOP OF "FILE JSON Lottie"
+    if (lottieRef.current) {
+      setTimeout(() => {
+        lottieRef.current?.reset();
+        lottieRef.current?.play();
+      }, 100);
+    }
+
+    // Automatic page change using setTimout
+    let timerDelayPageChange = setTimeout(
+      () => setAutomaticPageChange(true),
+      delayPageChange * 1000
+    );
+    return () => {
+      clearTimeout(timerDelayPageChange);
     };
-  });
 
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
-      <Animated.View
-        style={[
-          { width: 100, height: 80, backgroundColor: "black", margin: 30 },
-          style,
-        ]}
-      />
-      <Button
-        title="toggle"
-        onPress={() => {
-          randomWidth.value = Math.random() * 350;
-        }}
-      />
-    </View>
+  }, [lottieRef.current]);
+
+  // Return
+  return !automaticPageChange ? (
+    <AnimationIntro_Lottie lottieRef={lottieRef} />
+  ) : (
+    <NavigationContainer>
+      <StacksAppRoutes />
+      {/* <DrawerAppRoutes /> */}
+     
+    </NavigationContainer>
   );
 }

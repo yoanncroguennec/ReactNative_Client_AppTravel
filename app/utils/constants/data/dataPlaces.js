@@ -1,0 +1,31 @@
+export const dataPlaces = {
+  id: 1,
+  country_id: 1,
+  title: "Satue de la liberté",
+  desc: "Belle statue",
+  contact_id: 1,
+  img: "https://images.unsplash.com/photo-1569421899560-a1ae0dc07897?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  rating: 4.5,
+  review: "1450 reviews",
+  lat: 40.689247,
+  long: -74.044502,
+  location: "Liberty Island, New-York",
+  popular: [
+    {
+      id: 1,
+      title: "Station accueillante pour les familles",
+      img: "https://images.unsplash.com/photo-1569421899560-a1ae0dc07897?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      rating: 5,
+      review: "2050 reviews",
+      location: "Orland, Floride",
+    },
+    {
+      id: 2,
+      title: "Urban chic boutique Hot",
+      img: "https://images.unsplash.com/photo-1569421899560-a1ae0dc07897?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      rating: 4.8,
+      review: "3250 reviews",
+      location: "San Francisco, CA",
+    },
+  ],
+};
